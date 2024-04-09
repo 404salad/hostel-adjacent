@@ -69,8 +69,8 @@ const Header = (props: {
         <div className="hidden sm:block">
           <form action="https://formbold.com/s/unique_form_id" method="POST">
             <div className="relative">
-              <p className="text-xl ">
-                  Htop — One App To Rule Them All
+              <p className="text-xl text-white ">
+                  HTop — One App To Rule Them All
                </p>
             </div>
           </form>
