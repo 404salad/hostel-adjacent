@@ -1,18 +1,12 @@
-"use client";
+'use client'
+import { useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-
-import { Metadata } from "next";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
-import SelectGroupOne from "@/components/SelectGroup/SelectGroupOne";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import { db } from "@/firebase/config";
-import { doc } from "firebase/firestore";
+import DefaultLayout from "@/components/Layouts/DefaultLayout"
+import { addDoc, collection } from "firebase/firestore";
 
-const doctor = () => {
-  
+const Doctor = () => {
   const [form, setForm] = useState({
-    name: "",
     email: "",
     registrationId: "",
     age: "",
@@ -20,25 +14,31 @@ const doctor = () => {
     medicines: "",
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const DocRef = db.collection("doctor").doc();
-
-    const medicinesArray = form.medicines.split(",").map(medicine => medicine.trim());
-
-
-    DocRef.set({
-      name: form.name,
-      email: form.email,
-      registrationId: form.registrationId,
-      age: form.age,
-      problems: form.problems,
-      medicines: medicinesArray,
-    });
-    console.log("Submitted");
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
   };
 
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const medicinesArray = form.medicines.split(",").map((medicine) => medicine.trim());
+    const docRef = await addDoc(collection(db, "doctor"), {
+      ...form,
+      medicines: medicinesArray,
+      date: new Date().toISOString(),
+    });
+    console.log("Submitted with ID: ", docRef.id);
+    setForm({
+      email: "",
+      registrationId: "",
+      age: "",
+      problems: "",
+      medicines: "",
+    });
+  };
 
   return (
     <DefaultLayout>
@@ -57,22 +57,15 @@ const doctor = () => {
               <div className="grid grid-cols-2 gap-6 p-6.5">
                 <div>
                   <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your last name"
-                    className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
-                </div>
-                <div>
-                  <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                     Email <span className="text-meta-1">*</span>
                   </label>
                   <input
                     type="email"
                     placeholder="Enter your email address"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    value={form.email}
+                    onChange={handleChange}
+                    name="email"
                   />
                 </div>
                 <div>
@@ -83,6 +76,9 @@ const doctor = () => {
                     type="text"
                     placeholder="Registration number here"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    value={form.registrationId}
+                    onChange={handleChange}
+                    name="registrationId"
                   />
                 </div>
                 <div>
@@ -93,9 +89,12 @@ const doctor = () => {
                     type="number"
                     placeholder="Enter your age here"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    value={form.age}
+                    onChange={handleChange}
+                    name="age"
                   />
                 </div>
-                <div className="col-span-2">
+                <div className="">
                   <label className="mb-3 block w-full text-sm font-medium text-black dark:text-white">
                     Problems
                   </label>
@@ -103,6 +102,9 @@ const doctor = () => {
                     type="text"
                     placeholder="Enter your problems here"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    value={form.problems}
+                    onChange={handleChange}
+                    name="problems"
                   />
                 </div>
 
@@ -114,6 +116,9 @@ const doctor = () => {
                     rows={6}
                     placeholder="Type your message"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    value={form.medicines}
+                    onChange={handleChange}
+                    name="medicines"
                   ></textarea>
                 </div>
               </div>
@@ -131,4 +136,4 @@ const doctor = () => {
   );
 };
 
-export default doctor;
+export default Doctor;
