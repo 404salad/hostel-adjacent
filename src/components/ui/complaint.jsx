@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 
 const Complaint = () => {
+  let updatecomplain = 0;
   const [complaints, setComplaints] = useState([]);
   const [activeComplaints, setActiveComplaints] = useState([]);
   const [solvedComplaints, setSolvedComplaints] = useState([]);
@@ -63,6 +64,12 @@ const Complaint = () => {
     // Reset the form fields
     setSelectedItem("");
     setQuantity(0);
+
+    // Update the complaint status to solved
+    const complainRef = doc(db, "Complaints", resolveId);
+    await updateDoc(complainRef, { Status: 0 });
+    console.log("Complaint resolved successfully");
+    updatecomplain = updatecomplain + 1;
   };
 
   useEffect(() => {
@@ -96,7 +103,7 @@ const Complaint = () => {
     };
 
     fetchComplaints();
-  }, []);
+  }, [updatecomplain]);
 
   return (
     <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
