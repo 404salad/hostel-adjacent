@@ -12,6 +12,7 @@
     "apexcharts": "^3.45.2",
     "firebase": "^10.10.0",
     "flatpickr": "^4.6.13",
+    "getmac": "^6.6.0",
     "jsvectormap": "^1.5.3",
     "next": "14.1.0",
     "react": "^18",
