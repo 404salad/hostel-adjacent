@@ -14,7 +14,7 @@ export default function Home() {
     <DefaultLayout2>
       <div className="mx-auto max-w-270">
         <Breadcrumb pageName="Login Page  " />
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid grid-cols-4 gap-3 py-5">
 <div className="p-1">  
 <div className="rounded overflow-hidden shadow-lg bg-boxdark rounded-xl">
   <svg viewBox="0 0 1024 1024" className="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M874.666667 42.666667a21.333333 21.333333 0 0 0-21.333334-21.333334H170.666667a21.333333 21.333333 0 0 0-21.333334 21.333334v213.333333h725.333334V42.666667z" fill="#727272"></path><path d="M917.333333 234.666667H106.666667a85.333333 85.333333 0 0 0-85.333334 85.333333v426.666667a42.666667 42.666667 0 0 0 42.666667 42.666666h149.333333a21.333333 21.333333 0 0 0 21.333334-21.333333h554.645333a21.333333 21.333333 0 0 0 21.333333 21.333333H960a42.666667 42.666667 0 0 0 42.666667-42.666666V320a85.333333 85.333333 0 0 0-85.333334-85.333333z" fill="#444444"></path><path d="M874.666667 789.333333H149.333333V533.333333a21.333333 21.333333 0 0 1 21.333334-21.333333h682.666666a21.333333 21.333333 0 0 1 21.333334 21.333333v256z" fill="#232323"></path><path d="M192 554.666667v426.666666a21.333333 21.333333 0 0 0 21.333333 21.333334h597.333334a21.333333 21.333333 0 0 0 21.333333-21.333334V554.666667H192z" fill="#E6E6E6"></path><path d="M885.333333 373.333333m-32 0a32 32 0 1 0 64 0 32 32 0 1 0-64 0Z" fill="#72C472"></path><path d="M682.666667 682.666667H341.312a21.333333 21.333333 0 1 1 0-42.666667H682.666667a21.333333 21.333333 0 1 1 0 42.666667zM682.666667 789.333333H341.312a21.333333 21.333333 0 1 1 0-42.666666H682.666667a21.333333 21.333333 0 1 1 0 42.666666zM511.978667 896h-170.666667a21.333333 21.333333 0 1 1 0-42.666667h170.666667a21.333333 21.333333 0 1 1 0 42.666667z" fill="#B3B3B3"></path></g></svg>
@@ -22,7 +22,7 @@ export default function Home() {
     <div className="font-bold text-xl mb-2"> Technician </div>
 
     <Link
-              href="#"
+              href="tech"
               className="inline-flex items-center justify-center rounded-full bg-primary px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
             >
               Login as Technician
@@ -37,7 +37,7 @@ export default function Home() {
     <div className="font-bold text-xl mb-2"> Food Park</div>
 
     <Link
-              href="#"
+              href="food"
               className="inline-flex items-center justify-center rounded-full bg-primary px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
             >
               Login to Food Park
@@ -55,7 +55,7 @@ export default function Home() {
     <div className="font-bold text-xl mb-2">  Chotta Dhobi </div>
   
     <Link
-              href="#"
+              href="dhobi"
               className="inline-flex items-center justify-center rounded-full bg-primary px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
             >
               Login to Chotta dhobi
@@ -72,7 +72,7 @@ export default function Home() {
     <div className="font-bold text-xl mb-2">  Doctor </div>
   
     <Link
-              href="#"
+              href="/doctor"
               className="inline-flex items-center justify-center rounded-full bg-primary px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
             >
               Login as Doctor
