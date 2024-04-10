@@ -70,7 +70,7 @@ const Header = (props: {
           <form action="https://formbold.com/s/unique_form_id" method="POST">
             <div className="relative">
               <p className="text-xl text-white ">
-                  HTop — One App To Rule Them All
+                 <a href="/"> HTop — One App To Rule Them All</a>
                </p>
             </div>
           </form>
